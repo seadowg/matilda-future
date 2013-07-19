@@ -1,24 +1,23 @@
 require "observer"
 
 class Promise
-  include Observable
-
   def initialize
     @value = nil
     @set = false
   end
 
   def future
-    future = Future.new(self)
-    future.update(@value) if @set
-    future
+    unless @future
+      @future = Future.new
+      @future.set(@value) if @set
+    end
+
+    @future
   end
 
   def set(value)
     unless @set
-      changed
-      notify_observers(value)
-
+      @future.set(value) if @future
       @value = value
       @set = true
     end

@@ -1,8 +1,4 @@
 class Future
-  def initialize(observable)
-    observable.add_observer(self)
-  end
-
   def ready?
     !!@value
   end
@@ -11,7 +7,7 @@ class Future
     @value
   end
 
-  def update(value)
+  def set(value)
     @value = value
   end
 end
