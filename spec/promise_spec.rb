@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require 'ruby-future'
+require 'matilda-future'
 
 describe "Promise" do
   describe "#future" do
